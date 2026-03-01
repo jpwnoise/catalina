@@ -46,22 +46,36 @@ export default function HomePage() {
             que despierta todos tus sentidos.
           </p>
 
+<div className="flex justify-center mt-10">
 
-          <div className="flex gap-4 justify-center">
-            <Link
-              href="/menu"
-              className="bg-[#111111] text-white px-8 py-3 rounded-full font-semibold hover:scale-105 transition"
-            >
-              Ver Menú
-            </Link>
+  <Link
+    href="/menu"
+    className="
+      relative
+      bg-[#fdfaf5]
+      text-[#111111]
+      px-16 py-10
+      rounded-lg
+      shadow-2xl
+      border-4 border-[#111111]
+      font-serif
+      tracking-widest
+      text-2xl
+      hover:scale-105
+      transition
+      before:absolute
+      before:inset-2
+      before:border
+      before:border-[#111111]/30
+      before:rounded-md
+    "
+  >
+    <span className="block text-sm tracking-[0.4em] mt-3">
+      MENÚ
+    </span>
+  </Link>
 
-            <a
-              href="#contacto"
-              className="border-2 border-[#111111] px-8 py-3 rounded-full font-semibold hover:bg-[#111111] hover:text-white transition"
-            >
-              Contacto
-            </a>
-          </div>
+</div>
         </motion.div>
       </section>
 

@@ -1,37 +1,93 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 const menuData = [
   {
     category: "Entradas",
     items: [
-      { name: "Coctel de Camarón", price: "$180", desc: "Camarón fresco con salsa especial de la casa." },
-      { name: "Aguachile Verde", price: "$220", desc: "Camarones crudos marinados en limón, chile y pepino." },
-      { name: "Ostiones en su Concha", price: "$190", desc: "Servidos frescos con limón y salsa negra." },
+      {
+        name: "Coctel de Camarón",
+        price: "$180",
+        desc: "Camarón fresco con salsa especial de la casa.",
+        image: "/menu/coctel-camaron.jpg",
+      },
+      {
+        name: "Aguachile Verde",
+        price: "$220",
+        desc: "Camarones crudos marinados en limón, chile y pepino.",
+        image: "/menu/aguachile-verde.jpg",
+      },
+      {
+        name: "Ostiones en su Concha",
+        price: "$190",
+        desc: "Servidos frescos con limón y salsa negra.",
+        image: "/menu/ostiones.png",
+      },
     ],
   },
   {
     category: "Tostadas",
     items: [
-      { name: "Tostada de Ceviche Mixto", price: "$95", desc: "Camarón, pulpo y pescado fresco." },
-      { name: "Tostada de Atún Sellado", price: "$120", desc: "Atún premium con aguacate y ajonjolí." },
+      {
+        name: "Tostada de Ceviche Mixto",
+        price: "$95",
+        desc: "Camarón, pulpo y pescado fresco.",
+        image: "/menu/ceviche-mixto.png",
+      },
+      {
+        name: "Tostada de Atún Sellado",
+        price: "$120",
+        desc: "Atún premium con aguacate y ajonjolí.",
+        image: "/menu/atun-sellado.png",
+      },
     ],
   },
   {
     category: "Especialidades",
     items: [
-      { name: "Filete a la Plancha", price: "$240", desc: "Filete fresco con mantequilla de ajo." },
-      { name: "Pulpo Zarandeado", price: "$320", desc: "Pulpo marinado a la parrilla estilo Nayarit." },
-      { name: "Mariscada Especial", price: "$520", desc: "Langosta, camarón, pulpo y pescado." },
+      {
+        name: "Filete a la Plancha",
+        price: "$240",
+        desc: "Filete fresco con mantequilla de ajo.",
+        image: "/menu/filete-plancha.png",
+      },
+      {
+        name: "Pulpo Zarandeado",
+        price: "$320",
+        desc: "Pulpo marinado a la parrilla estilo Nayarit.",
+        image: "/menu/pulpo-zarandeado.png",
+      },
+      {
+        name: "Mariscada Especial",
+        price: "$520",
+        desc: "Langosta, camarón, pulpo y pescado.",
+        image: "/menu/mariscada.png",
+      },
     ],
   },
   {
     category: "Bebidas",
     items: [
-      { name: "Clamato Preparado", price: "$95", desc: "Con limón, salsas negras y camarón." },
-      { name: "Cerveza Artesanal", price: "$75", desc: "Selección local bien fría." },
-      { name: "Agua Mineral", price: "$45", desc: "Con limón natural." },
+      {
+        name: "Clamato Preparado",
+        price: "$95",
+        desc: "Con limón, salsas negras y camarón.",
+        image: "/menu/clamato.png",
+      },
+      {
+        name: "Cerveza Artesanal",
+        price: "$75",
+        desc: "Selección local bien fría.",
+        image: "/menu/cerveza.png",
+      },
+      {
+        name: "Agua Mineral",
+        price: "$45",
+        desc: "Con limón natural.",
+        image: "/menu/mineral.png",
+      },
     ],
   },
 ];
@@ -40,7 +96,7 @@ export default function MenuPage() {
   return (
     <main className="min-h-screen bg-neutral-950 text-white">
 
-      {/* HERO DEL MENÚ */}
+      {/* HERO */}
       <section className="py-20 text-center bg-neutral-900">
         <motion.h1
           initial={{ opacity: 0, y: 40 }}
@@ -81,20 +137,34 @@ export default function MenuPage() {
                 <motion.div
                   key={i}
                   whileHover={{ scale: 1.02 }}
-                  className="flex justify-between items-start bg-neutral-900 p-6 rounded-xl"
+                  className="flex gap-6 bg-neutral-900 p-6 rounded-xl items-center shadow-lg hover:shadow-2xl transition"
                 >
-                  <div>
-                    <h3 className="text-xl font-semibold">
-                      {item.name}
-                    </h3>
-                    <p className="text-neutral-400 text-sm mt-1">
+                  {/* Imagen */}
+                  <div className="relative w-28 h-28 flex-shrink-0">
+                    <Image
+                      src={item.image}
+                      alt={item.name}
+                      fill
+                      className="object-cover rounded-lg"
+                    />
+                  </div>
+
+                  {/* Información */}
+                  <div className="flex-1">
+                    <div className="flex justify-between items-center">
+                      <h3 className="text-xl font-semibold">
+                        {item.name}
+                      </h3>
+
+                      <span className="text-orange-500 font-bold text-lg">
+                        {item.price}
+                      </span>
+                    </div>
+
+                    <p className="text-neutral-400 text-sm mt-2">
                       {item.desc}
                     </p>
                   </div>
-
-                  <span className="text-orange-500 font-bold text-lg">
-                    {item.price}
-                  </span>
                 </motion.div>
               ))}
             </div>
@@ -107,6 +177,7 @@ export default function MenuPage() {
       <footer className="bg-black py-8 text-center text-neutral-500">
         © 2026 Mariscos del Pacífico · Todos los derechos reservados
       </footer>
+
     </main>
   );
 }
