@@ -24,3 +24,12 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.text-shadow-dark {
+  text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.9);
+}
+
+.object-pos-custom {
+  object-position: -50% 30%;
+}
+
