@@ -1,10 +1,11 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { menu, Categoria } from "@/data/menu"
 import Image from "next/image"
 import { ArrowLeft, ArrowRight } from "lucide-react"
 import { Lora } from "next/font/google"
+import { motion } from "framer-motion"
 
 const lora = Lora({
   subsets: ["latin"],
@@ -14,13 +15,44 @@ const lora = Lora({
 
 export default function Menu() {
 
-  // categoría seleccionada
   const [category, changeCategory] = useState<Categoria>(menu[0])
-
-  // offset del carrusel (empieza en 0)
   const [categoryOffset, setCatOffset] = useState(0)
+  const [itemsPerView, setItemsPerView] = useState(3)
 
-  const maxOffset = Math.max(menu.length - 3, 0)
+  // detectar tamaño de pantalla
+  useEffect(() => {
+    const handleResize = () => {
+      setItemsPerView(window.innerWidth < 768 ? 1 : 3)
+    }
+
+    handleResize()
+    window.addEventListener("resize", handleResize)
+    return () => window.removeEventListener("resize", handleResize)
+  }, [])
+
+  const maxOffset = Math.max(menu.length - itemsPerView, 0)
+
+  // auto seleccionar en móvil
+  useEffect(() => {
+    if (itemsPerView === 1) {
+      changeCategory(menu[categoryOffset])
+    }
+  }, [categoryOffset, itemsPerView])
+
+  // swipe handler
+  const handleDragEnd = (_: any, info: any) => {
+    const threshold = 50
+
+    if (info.offset.x < -threshold) {
+      // swipe izquierda (avanza)
+      setCatOffset(prev => Math.min(prev + itemsPerView, maxOffset))
+    }
+
+    if (info.offset.x > threshold) {
+      // swipe derecha (regresa)
+      setCatOffset(prev => Math.max(prev - itemsPerView, 0))
+    }
+  }
 
   return (
     <div>
@@ -38,9 +70,9 @@ export default function Menu() {
         </div>
       </div>
 
-      {/* CARRUSEL DE CATEGORÍAS */}
+      {/* CARRUSEL */}
       <div className="flex flex-col items-center shadow-xl">
-        <div className="flex items-center m-4">
+        <div className="flex items-center m-4 w-full justify-center">
 
           {/* Flecha izquierda */}
           <button
@@ -52,33 +84,50 @@ export default function Menu() {
               }
             `}
             onClick={() => {
-              setCatOffset(prev => Math.max(prev - 3, 0))
+              setCatOffset(prev => Math.max(prev - itemsPerView, 0))
             }}
           >
             <ArrowLeft />
           </button>
 
-          {/* Categorías */}
-          {menu.slice(categoryOffset, categoryOffset + 3).map((cat, index) => {
-  const isActive = category.nombre === cat.nombre
+          {/* Swipe container */}
+          <motion.div
+            className="flex overflow-hidden"
+            drag="x"
+            dragConstraints={{ left: 0, right: 0 }}
+            onDragEnd={handleDragEnd}
+          >
+            {menu.slice(categoryOffset, categoryOffset + itemsPerView).map((cat, index) => {
+              const isActive = category.nombre === cat.nombre
 
-  return (
-    <button
-      key={index}
-      onClick={() => changeCategory(cat)}
-      className={`${lora.className} m-4 italic transition duration-300 ease-in-out font-bold p-2 rounded-full border-2 text-lg w-32 h-32
-        ${isActive
-          ? "bg-blue-100 border-blue-500 text-blue-600 shadow-xl scale-105"
-          : "border-gray-400 text-gray-700 shadow-lg hover:-translate-y-4 hover:shadow-2xl"
-        }
-      `}
-    >
-      <p className="scale-125 text-center leading-tight pointer-events-none">
-        {cat.nombre.replace(" y ", " y\u00A0")}
-      </p>
-    </button>
-  )
-})}
+              return (
+                <motion.button
+                  key={index}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => changeCategory(cat)}
+                  className={`${lora.className}
+                    m-2 md:m-4
+                    italic font-bold
+                    transition duration-300 ease-in-out
+                    rounded-full border-2
+                    flex items-center justify-center
+                    
+                    w-24 h-24 text-sm
+                    md:w-32 md:h-32 md:text-lg
+                    
+                    ${isActive
+                      ? "bg-blue-100 border-blue-500 text-blue-600 shadow-xl scale-105"
+                      : "border-gray-400 text-gray-700 shadow-lg hover:-translate-y-2 md:hover:-translate-y-4 hover:shadow-2xl"
+                    }
+                  `}
+                >
+                  <p className="text-center leading-tight pointer-events-none scale-100 md:scale-125">
+                    {cat.nombre.replace(" y ", " y\u00A0")}
+                  </p>
+                </motion.button>
+              )
+            })}
+          </motion.div>
 
           {/* Flecha derecha */}
           <button
@@ -90,7 +139,7 @@ export default function Menu() {
               }
             `}
             onClick={() => {
-              setCatOffset(prev => Math.min(prev + 3, maxOffset))
+              setCatOffset(prev => Math.min(prev + itemsPerView, maxOffset))
             }}
           >
             <ArrowRight />
@@ -104,12 +153,10 @@ export default function Menu() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 w-full shadow-lg">
 
-          {/* Nombre categoría */}
-          <div className={`${lora.className} italic bg-gray-400 w-full text-center p-2 font-bold text-2xl rounded-t text-gray-900 flex items-center justify-center`}>
+          <div className={`${lora.className} italic bg-gray-400 w-full text-center p-2 font-bold text-2xl text-gray-900 flex items-center justify-center`}>
             {category.nombre}
           </div>
 
-          {/* Lista productos */}
           <div className="p-4 h-64 overflow-y-auto shadow-[inset_0_4px_10px_rgba(0,0,0,0.2)]">
             <ul className={`${lora.className} italic list-disc pl-4 space-y-1 font-bold text-gray-900 text-xl`}>
               {category.productos.map((producto, index) => (
@@ -118,7 +165,6 @@ export default function Menu() {
             </ul>
           </div>
 
-          {/* Imagen */}
           <div className="flex justify-center items-center p-4">
             <Image
               src={'/menu/tostada_camaron.png'}
