@@ -1,183 +1,136 @@
-"use client";
+"use client"
 
-import { motion } from "framer-motion";
-import Image from "next/image";
+import { useState } from "react"
+import { menu, Categoria } from "@/data/menu"
+import Image from "next/image"
+import { ArrowLeft, ArrowRight } from "lucide-react"
+import { Lora } from "next/font/google"
 
-const menuData = [
-  {
-    category: "Entradas",
-    items: [
-      {
-        name: "Coctel de Camarón",
-        price: "$180",
-        desc: "Camarón fresco con salsa especial de la casa.",
-        image: "/menu/coctel-camaron.jpg",
-      },
-      {
-        name: "Aguachile Verde",
-        price: "$220",
-        desc: "Camarones crudos marinados en limón, chile y pepino.",
-        image: "/menu/aguachile-verde.jpg",
-      },
-      {
-        name: "Ostiones en su Concha",
-        price: "$190",
-        desc: "Servidos frescos con limón y salsa negra.",
-        image: "/menu/ostiones.png",
-      },
-    ],
-  },
-  {
-    category: "Tostadas",
-    items: [
-      {
-        name: "Tostada de Ceviche Mixto",
-        price: "$95",
-        desc: "Camarón, pulpo y pescado fresco.",
-        image: "/menu/ceviche-mixto.png",
-      },
-      {
-        name: "Tostada de Atún Sellado",
-        price: "$120",
-        desc: "Atún premium con aguacate y ajonjolí.",
-        image: "/menu/atun-sellado.png",
-      },
-    ],
-  },
-  {
-    category: "Especialidades",
-    items: [
-      {
-        name: "Filete a la Plancha",
-        price: "$240",
-        desc: "Filete fresco con mantequilla de ajo.",
-        image: "/menu/filete-plancha.png",
-      },
-      {
-        name: "Pulpo Zarandeado",
-        price: "$320",
-        desc: "Pulpo marinado a la parrilla estilo Nayarit.",
-        image: "/menu/pulpo-zarandeado.png",
-      },
-      {
-        name: "Mariscada Especial",
-        price: "$520",
-        desc: "Langosta, camarón, pulpo y pescado.",
-        image: "/menu/mariscada.png",
-      },
-    ],
-  },
-  {
-    category: "Bebidas",
-    items: [
-      {
-        name: "Clamato Preparado",
-        price: "$95",
-        desc: "Con limón, salsas negras y camarón.",
-        image: "/menu/clamato.png",
-      },
-      {
-        name: "Cerveza Artesanal",
-        price: "$75",
-        desc: "Selección local bien fría.",
-        image: "/menu/cerveza.png",
-      },
-      {
-        name: "Agua Mineral",
-        price: "$45",
-        desc: "Con limón natural.",
-        image: "/menu/mineral.png",
-      },
-    ],
-  },
-];
+const lora = Lora({
+  subsets: ["latin"],
+  style: ["italic", "normal"],
+  weight: ["400", "500", "600", "700"]
+})
 
-export default function MenuPage() {
+export default function Menu() {
+
+  // categoría seleccionada
+  const [category, changeCategory] = useState<Categoria>(menu[0])
+
+  // offset del carrusel (empieza en 0)
+  const [categoryOffset, setCatOffset] = useState(0)
+
+  const maxOffset = Math.max(menu.length - 3, 0)
+
   return (
-    <main className="min-h-screen bg-neutral-950 text-white">
+    <div>
 
       {/* HERO */}
-      <section className="py-20 text-center bg-neutral-900">
-        <motion.h1
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-5xl font-bold mb-4"
-        >
-          Nuestro Menú
-        </motion.h1>
+      <div className="w-full">
+        <div className="relative w-full h-[40vh] md:h-[60vh] lg:h-[70vh]">
+          <Image
+            src="/image_menu.png"
+            alt="Hero menu"
+            fill
+            className="object-cover"
+            priority
+          />
+        </div>
+      </div>
 
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.5 }}
-          className="text-neutral-400"
-        >
-          Sabores frescos del mar directo a tu mesa 🌊
-        </motion.p>
-      </section>
+      {/* CARRUSEL DE CATEGORÍAS */}
+      <div className="flex flex-col items-center shadow-xl">
+        <div className="flex items-center m-4">
 
-      {/* LISTA DEL MENÚ */}
-      <section className="py-16 px-6 max-w-5xl mx-auto space-y-16">
-
-        {menuData.map((section, index) => (
-          <motion.div
-            key={section.category}
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: index * 0.2 }}
-            viewport={{ once: true }}
+          {/* Flecha izquierda */}
+          <button
+            disabled={categoryOffset === 0}
+            className={`p-2 border rounded-full transition
+              ${categoryOffset === 0
+                ? "text-gray-300 border-gray-300 cursor-not-allowed"
+                : "hover:border-blue-500 hover:text-blue-500"
+              }
+            `}
+            onClick={() => {
+              setCatOffset(prev => Math.max(prev - 3, 0))
+            }}
           >
-            <h2 className="text-3xl font-bold mb-8 border-b border-neutral-800 pb-3">
-              {section.category}
-            </h2>
+            <ArrowLeft />
+          </button>
 
-            <div className="space-y-6">
-              {section.items.map((item, i) => (
-                <motion.div
-                  key={i}
-                  whileHover={{ scale: 1.02 }}
-                  className="flex gap-6 bg-neutral-900 p-6 rounded-xl items-center shadow-lg hover:shadow-2xl transition"
-                >
-                  {/* Imagen */}
-                  <div className="relative w-28 h-28 flex-shrink-0">
-                    <Image
-                      src={item.image}
-                      alt={item.name}
-                      fill
-                      className="object-cover rounded-lg"
-                    />
-                  </div>
+          {/* Categorías */}
+          {menu.slice(categoryOffset, categoryOffset + 3).map((cat, index) => {
+  const isActive = category.nombre === cat.nombre
 
-                  {/* Información */}
-                  <div className="flex-1">
-                    <div className="flex justify-between items-center">
-                      <h3 className="text-xl font-semibold">
-                        {item.name}
-                      </h3>
+  return (
+    <button
+      key={index}
+      onClick={() => changeCategory(cat)}
+      className={`${lora.className} m-4 italic transition duration-300 ease-in-out font-bold p-2 rounded-full border-2 text-lg w-32 h-32
+        ${isActive
+          ? "bg-blue-100 border-blue-500 text-blue-600 shadow-xl scale-105"
+          : "border-gray-400 text-gray-700 shadow-lg hover:-translate-y-4 hover:shadow-2xl"
+        }
+      `}
+    >
+      <p className="scale-125 text-center leading-tight pointer-events-none">
+        {cat.nombre.replace(" y ", " y\u00A0")}
+      </p>
+    </button>
+  )
+})}
 
-                      <span className="text-orange-500 font-bold text-lg">
-                        {item.price}
-                      </span>
-                    </div>
+          {/* Flecha derecha */}
+          <button
+            disabled={categoryOffset >= maxOffset}
+            className={`p-2 border rounded-full transition
+              ${categoryOffset >= maxOffset
+                ? "text-gray-300 border-gray-300 cursor-not-allowed"
+                : "hover:border-blue-500 hover:text-blue-500"
+              }
+            `}
+            onClick={() => {
+              setCatOffset(prev => Math.min(prev + 3, maxOffset))
+            }}
+          >
+            <ArrowRight />
+          </button>
 
-                    <p className="text-neutral-400 text-sm mt-2">
-                      {item.desc}
-                    </p>
-                  </div>
-                </motion.div>
+        </div>
+      </div>
+
+      {/* PRODUCTOS */}
+      <div className="m-4 bg-gray-200 shadow-lg flex flex-col">
+
+        <div className="grid grid-cols-1 md:grid-cols-2 w-full shadow-lg">
+
+          {/* Nombre categoría */}
+          <div className={`${lora.className} italic bg-gray-400 w-full text-center p-2 font-bold text-2xl rounded-t text-gray-900 flex items-center justify-center`}>
+            {category.nombre}
+          </div>
+
+          {/* Lista productos */}
+          <div className="p-4 h-64 overflow-y-auto shadow-[inset_0_4px_10px_rgba(0,0,0,0.2)]">
+            <ul className={`${lora.className} italic list-disc pl-4 space-y-1 font-bold text-gray-900 text-xl`}>
+              {category.productos.map((producto, index) => (
+                <li key={index}>{producto.nombre}</li>
               ))}
-            </div>
-          </motion.div>
-        ))}
+            </ul>
+          </div>
 
-      </section>
+          {/* Imagen */}
+          <div className="flex justify-center items-center p-4">
+            <Image
+              src={'/menu/tostada_camaron.png'}
+              width={200}
+              height={200}
+              alt="imagen producto"
+            />
+          </div>
 
-      {/* FOOTER */}
-      <footer className="bg-black py-8 text-center text-neutral-500">
-        © 2026 Mariscos del Pacífico · Todos los derechos reservados
-      </footer>
+        </div>
+      </div>
 
-    </main>
-  );
+    </div>
+  )
 }
