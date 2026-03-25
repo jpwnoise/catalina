@@ -8,136 +8,243 @@ type Producto = {
 
 export type Categoria = {
   nombre: string
-  productos: Producto[]
+  imagen: string
+  productos: Producto[],
+  icon?: string;
 }
 
 export const menu: Categoria[] = [
 
-{
-nombre: "Chilaquiles",
-productos: [
-{ id:"chilaquiles1", nombre:"Chilaquiles sencillos", precio:50, descripcion:"Totopos en salsa acompañados con frijoles, crema y queso de rancho." },
-{ id:"chilaquiles2", nombre:"Chilaquiles con fajitas de pollo", precio:100, descripcion:"Chilaquiles tradicionales servidos con fajitas de pollo." },
-{ id:"chilaquiles3", nombre:"Chilaquiles con huevos al gusto", precio:90, descripcion:"Chilaquiles acompañados con huevos preparados al gusto." },
-{ id:"chilaquiles4", nombre:"Chilaquiles con arrachera", precio:145, descripcion:"Chilaquiles con porción de arrachera a la plancha." },
-{ id:"chilaquiles5", nombre:"Chilaquiles con peinecillo", precio:110, descripcion:"Chilaquiles con carne de res tipo peinecillo." }
-]
-},
+  {
+    nombre: "Chilaquiles",
+    imagen: "chilaquil.png",
+    icon: "/menu/categorias/chilaquilIcon.png",
+    productos: [
+      { id:"ch1", nombre:"Sencillos", precio:50 },
+      { id:"ch2", nombre:"Con fajitas de pollo", precio:100 },
+      { id:"ch3", nombre:"Con huevos al gusto", precio:90 },
+      { id:"ch4", nombre:"Con arrachera", precio:145 },
+      { id:"ch5", nombre:"Con peinecillo", precio:110 }
+    ]
+  },
 
-{
-nombre:"Guisados",
-productos:[
-{ id:"guisado1", nombre:"Chicharrón en salsa guajillo", precio:90, descripcion:"Chicharrón de cerdo guisado en salsa roja de guajillo." },
-{ id:"guisado2", nombre:"Chicharrón en salsa verde", precio:90, descripcion:"Chicharrón cocinado en salsa verde casera." },
-{ id:"guisado3", nombre:"Costilla en salsa guajillo", precio:90, descripcion:"Costillas de cerdo en salsa roja tradicional." },
-{ id:"guisado4", nombre:"Costilla en chile morita", precio:90, descripcion:"Costilla preparada en salsa de chile morita." },
-{ id:"guisado5", nombre:"Pastor", precio:90, descripcion:"Carne de cerdo estilo pastor sazonada." }
-]
-},
+  {
+    nombre:"Guisados",
+    imagen:"guisados.png",
+    icon:"/menu/categorias/guisadosIcon.png",
+    productos:[
+      { id:"g1", nombre:"Chicharrón en salsa guajillo", precio:90 },
+      { id:"g2", nombre:"Chicharrón en salsa verde", precio:90 },
+      { id:"g3", nombre:"Costilla en salsa guajillo", precio:90 },
+      { id:"g4", nombre:"Costilla en chile morita", precio:90 },
+      { id:"g5", nombre:"Pastor", precio:90 },
+      { id:"g6", nombre:"Carne a la mexicana", precio:95 }
+    ]
+  },
 
-{
-nombre:"Huaraches",
-productos:[
-{ id:"huarache1", nombre:"Huarache con peinecillo", precio:150, descripcion:"Huarache grande con carne de res y queso gratinado." },
-{ id:"huarache2", nombre:"Huarache con chorizo", precio:130, descripcion:"Huarache con chorizo y queso gratinado." },
-{ id:"huarache3", nombre:"Huarache con chistorra", precio:170, descripcion:"Huarache con chistorra y queso gratinado." }
-]
-},
+  {
+    nombre:"Huaraches",
+    imagen:"huaraches.png",
+    icon:"/menu/categorias/huarachesIcon.png",
+    productos:[
+      { id:"h1", nombre:"Peinecillo", precio:150 },
+      { id:"h2", nombre:"Chorizo", precio:130 },
+      { id:"h3", nombre:"Chistorra", precio:170 }
+    ]
+  },
 
-{
-nombre:"Molletes",
-productos:[
-{ id:"mollete1", nombre:"Molletes sencillos", precio:80, descripcion:"Pan tostado con frijoles y queso gratinado." },
-{ id:"mollete2", nombre:"Molletes con arrachera", precio:180, descripcion:"Molletes acompañados con arrachera." },
-{ id:"mollete3", nombre:"Molletes con peinecillo", precio:115, descripcion:"Molletes con carne de res tipo peinecillo." },
-{ id:"mollete4", nombre:"Molletes con chorizo", precio:95, descripcion:"Molletes con chorizo tradicional." },
-{ id:"mollete5", nombre:"Molletes dulces", precio:65, descripcion:"Molletes con cajeta, miel o mermelada." }
-]
-},
+  {
+    nombre:"Molletes",
+    imagen:"molletes.png",
+    icon:"/menu/categorias/molletesIcon.png",
+    productos:[
+      { id:"m1", nombre:"Sencillos", precio:80 },
+      { id:"m2", nombre:"Con arrachera", precio:180 },
+      { id:"m3", nombre:"Con peinecillo", precio:115 },
+      { id:"m4", nombre:"Con chorizo", precio:95 },
+      { id:"m5", nombre:"Dulces", precio:65 }
+    ]
+  },
 
-{
-nombre:"Hotcakes y Waffles",
-productos:[
-{ id:"hotcake1", nombre:"Hotcakes", precio:79, descripcion:"Orden de dos hotcakes con miel o cajeta." },
-{ id:"waffle1", nombre:"Waffles con ingredientes", precio:90, descripcion:"Waffle con dos ingredientes a elegir como fruta o chocolate." }
-]
-},
+  {
+    nombre:"Desayunos",
+    imagen:"desayunos.png",
+    icon:"/menu/categorias/desayunosIcon.png",
+    productos:[
+      { id:"d1", nombre:"Huevos al gusto", precio:90 },
+      { id:"d2", nombre:"Omelette (2 ingredientes)", precio:110 },
+      { id:"d3", nombre:"Gorditas rellenas (3 piezas)", precio:100 },
+      { id:"d4", nombre:"Quesadilla sencilla", precio:60 },
+      { id:"d5", nombre:"Quesadilla con chorizo", precio:75 },
+      { id:"d6", nombre:"Quesadilla con peinecillo", precio:80 },
+      { id:"d7", nombre:"Quesadilla con arrachera", precio:120 },
+      { id:"d8", nombre:"Pelizcadas (3 piezas)", precio:139 }
+    ]
+  },
 
-{
-nombre:"Camarones",
-productos:[
-{ id:"camarones1", nombre:"Camarones empanizados", precio:180, descripcion:"Camarones empanizados y fritos." },
-{ id:"camarones2", nombre:"Camarones a la mantequilla", precio:180, descripcion:"Camarones salteados en mantequilla." },
-{ id:"camarones3", nombre:"Camarones a la diabla", precio:180, descripcion:"Camarones en salsa picante estilo diabla." },
-{ id:"camarones4", nombre:"Camarones al mojo de ajo", precio:180, descripcion:"Camarones salteados con ajo." },
-{ id:"camarones5", nombre:"Camarones zarandeados", precio:180, descripcion:"Camarones marinados estilo zarandeado." },
-{ id:"camarones6", nombre:"Camarones al ajillo", precio:180, descripcion:"Camarones preparados con aceite de oliva y ajo." },
-{ id:"camarones7", nombre:"Camarones veracruzana", precio:190, descripcion:"Camarones en salsa estilo veracruzano." },
-{ id:"camarones8", nombre:"Camarones tamarindo", precio:190, descripcion:"Camarones en salsa dulce de tamarindo." },
-{ id:"camarones9", nombre:"Camarones mango", precio:190, descripcion:"Camarones en salsa dulce de mango." },
-{ id:"camarones10", nombre:"Camarones BBQ", precio:190, descripcion:"Camarones con salsa barbecue." },
-{ id:"camarones11", nombre:"Camarones al coco", precio:195, descripcion:"Camarones empanizados con coco." },
-{ id:"camarones12", nombre:"Camarones momia", precio:210, descripcion:"Camarones rellenos de queso y envueltos en tocino." }
-]
-},
+  {
+    nombre:"Hotcakes y Waffles",
+    imagen:"hotcakes.png",
+    icon:"/menu/categorias/hotcakesIcon.png",
+    productos:[
+      { id:"hw1", nombre:"Hotcakes (2 piezas)", precio:79 },
+      { id:"hw2", nombre:"Waffles (2 ingredientes)", precio:90 }
+    ]
+  },
 
-{
-nombre:"Filetes",
-productos:[
-{ id:"filete1", nombre:"Filete empanizado", precio:150, descripcion:"Filete de pescado empanizado." },
-{ id:"filete2", nombre:"Filete mantequilla", precio:150, descripcion:"Filete de pescado a la mantequilla." },
-{ id:"filete3", nombre:"Filete gratinado", precio:150, descripcion:"Filete cubierto con queso gratinado." },
-{ id:"filete4", nombre:"Filete diabla", precio:150, descripcion:"Filete con salsa picante." },
-{ id:"filete5", nombre:"Filete zarandeado", precio:150, descripcion:"Filete marinado estilo zarandeado." }
-]
-},
+  {
+    nombre:"Entradas",
+    imagen:"entradas.png",
+    icon:"/menu/categorias/entradasIcon.png",
+    productos:[
+      { id:"e1", nombre:"Empanadas de camarón o marlín", precio:160 },
+      { id:"e2", nombre:"Tacos gobernador", precio:160 },
+      { id:"e3", nombre:"Tacos de frijol con queso", precio:70 },
+      { id:"e4", nombre:"Alitas BBQ o búfalo", precio:130 },
+      { id:"e5", nombre:"Alitas con salsa de aguachile", precio:130 },
+      { id:"e6", nombre:"Queso fundido", precio:120 },
+      { id:"e7", nombre:"Queso fundido con chorizo", precio:170 },
+      { id:"e8", nombre:"Queso fundido con chistorra", precio:190 },
+      { id:"e9", nombre:"Panela asada", precio:160 },
+      { id:"e10", nombre:"Chistorra", precio:160 },
+      { id:"e11", nombre:"Papas gajo / francesa", precio:95 },
+      { id:"e12", nombre:"Chicharrón de pescado", precio:180 }
+    ]
+  },
 
-{
-nombre:"Aguachiles",
-productos:[
-{ id:"aguachile1", nombre:"Aguachile rojo", precio:180, descripcion:"Camarones en salsa roja picante con limón." },
-{ id:"aguachile2", nombre:"Aguachile verde", precio:180, descripcion:"Camarones en salsa verde con chile serrano." },
-{ id:"aguachile3", nombre:"Aguachile perla negra", precio:190, descripcion:"Aguachile especial de la casa." },
-{ id:"aguachile4", nombre:"Aguachile de atún", precio:190, descripcion:"Aguachile preparado con atún fresco." }
-]
-},
+  {
+    nombre:"Camarones",
+    imagen:"camarones.png",
+    icon:"/menu/categorias/camaronesIcon.png",
+    productos:[
+      { id:"c1", nombre:"Empanizados", precio:180 },
+      { id:"c2", nombre:"Mantequilla", precio:180 },
+      { id:"c3", nombre:"Diabla", precio:180 },
+      { id:"c4", nombre:"Mojo de ajo", precio:180 },
+      { id:"c5", nombre:"Zarandeado", precio:180 },
+      { id:"c6", nombre:"Ajillo", precio:180 },
+      { id:"c7", nombre:"Veracruzana", precio:190 },
+      { id:"c8", nombre:"Tamarindo", precio:190 },
+      { id:"c9", nombre:"Mango", precio:190 },
+      { id:"c10", nombre:"BBQ", precio:190 },
+      { id:"c11", nombre:"Al coco", precio:195 },
+      { id:"c12", nombre:"Momia", precio:210 }
+    ]
+  },
 
-{
-nombre:"Cortes",
-productos:[
-{ id:"corte1", nombre:"New York", precio:330, descripcion:"Corte New York de res de aproximadamente 400g." },
-{ id:"corte2", nombre:"Ribeye", precio:339, descripcion:"Corte ribeye jugoso de res." },
-{ id:"corte3", nombre:"Arrachera", precio:280, descripcion:"Arrachera a la parrilla." },
-{ id:"corte4", nombre:"T-Bone", precio:339, descripcion:"Corte T-Bone de res." },
-{ id:"corte5", nombre:"Cowboy", precio:480, descripcion:"Corte cowboy grueso de res." },
-{ id:"corte6", nombre:"Tomahawk", precio:1100, descripcion:"Corte tomahawk premium preparado al carbón." }
-]
-},
+  {
+    nombre:"Filetes",
+    imagen:"filetes.png",
+    icon:"/menu/categorias/filetesIcon2.png",
+    productos:[
+      { id:"f1", nombre:"Empanizado", precio:150 },
+      { id:"f2", nombre:"Mantequilla", precio:150 },
+      { id:"f3", nombre:"Gratinado", precio:150 },
+      { id:"f4", nombre:"Tamarindo", precio:150 },
+      { id:"f5", nombre:"Diabla", precio:150 },
+      { id:"f6", nombre:"Mojo de ajo", precio:150 },
+      { id:"f7", nombre:"Zarandeado", precio:150 },
+      { id:"f8", nombre:"Veracruzana", precio:150 },
+      { id:"f9", nombre:"Mango", precio:150 },
+      { id:"f10", nombre:"BBQ", precio:150 },
+      { id:"f11", nombre:"Ajillo", precio:150 }
+    ]
+  },
 
-{
-nombre:"Postres",
-productos:[
-{ id:"postre1", nombre:"Rebanada de pastel", precio:60, descripcion:"Rebanada de pastel casero." },
-{ id:"postre2", nombre:"Plátanos con lechera", precio:55, descripcion:"Plátanos asados con lechera." },
-{ id:"postre3", nombre:"Helado", precio:60, descripcion:"Helado cremoso de sabor variado." },
-{ id:"postre4", nombre:"Cheesecake", precio:60, descripcion:"Pastel de queso estilo cheesecake." }
-]
-},
+  {
+    nombre:"Pulpo",
+    imagen:"pulpo.png",
+    icon:"/menu/categorias/pulpoIcon.png",
+    productos:[
+      { id:"p1", nombre:"Zarandeado", precio:260 },
+      { id:"p2", nombre:"Mantequilla", precio:260 },
+      { id:"p3", nombre:"Diabla", precio:260 },
+      { id:"p4", nombre:"Mojo de ajo", precio:260 },
+      { id:"p5", nombre:"BBQ", precio:260 },
+      { id:"p6", nombre:"Veracruzana", precio:260 },
+      { id:"p7", nombre:"Ajillo", precio:260 }
+    ]
+  },
 
-{
-nombre:"Bebidas",
-productos:[
-{ id:"bebida1", nombre:"Jugo natural", precio:45, descripcion:"Jugo natural de frutas." },
-{ id:"bebida2", nombre:"Licuado", precio:55, descripcion:"Licuado de frutas con leche." },
-{ id:"bebida3", nombre:"Limonada", precio:60, descripcion:"Bebida refrescante de limón." },
-{ id:"bebida4", nombre:"Naranjada", precio:60, descripcion:"Bebida refrescante de naranja." },
-{ id:"bebida5", nombre:"Agua fresca", precio:29, descripcion:"Agua fresca natural del día." },
-{ id:"bebida6", nombre:"Refresco", precio:30, descripcion:"Refresco embotellado." },
-{ id:"bebida7", nombre:"Cerveza", precio:40, descripcion:"Cerveza fría." },
-{ id:"bebida8", nombre:"Capuccino", precio:50, descripcion:"Café capuccino caliente." },
-{ id:"bebida9", nombre:"Frapuccino", precio:65, descripcion:"Bebida fría de café tipo frappé." },
-{ id:"bebida10", nombre:"Café americano", precio:30, descripcion:"Café americano tradicional." }
-]
-}
+  {
+    nombre:"Aguachiles",
+    imagen:"aguachile.png",
+    icon:"/menu/categorias/aguachilesIcon.png",
+    productos:[
+      { id:"a1", nombre:"Rojo", precio:180 },
+      { id:"a2", nombre:"Verde", precio:180 },
+      { id:"a3", nombre:"Perla negra", precio:190 },
+      { id:"a4", nombre:"Atún", precio:190 }
+    ]
+  },
 
-]
+  {
+    nombre:"Sopas",
+    imagen:"sopas.png",
+    icon:"/menu/categorias/sopasIcon.png",
+    productos:[
+      { id:"s1", nombre:"Sopa de mariscos", precio:250 },
+      { id:"s2", nombre:"Caldo de camarón", precio:230 },
+      { id:"s3", nombre:"Crema de mariscos", precio:260 }
+    ]
+  },
+
+  {
+    nombre:"Pastas",
+    imagen:"pastas.png",
+    icon:"/menu/categorias/pastasIcon.png",
+    productos:[
+      { id:"pa1", nombre:"Alfredo", precio:160 },
+      { id:"pa2", nombre:"Boloñesa", precio:160 }
+    ]
+  },
+
+  {
+    nombre:"Cortes",
+    imagen:"cortes.png",
+    icon:"/menu/categorias/cortesIcon.png",
+    productos:[
+      { id:"co1", nombre:"New York 400g", precio:330 },
+      { id:"co2", nombre:"Ribeye 400g", precio:339 },
+      { id:"co3", nombre:"Arrachera 400g", precio:280 },
+      { id:"co4", nombre:"T-Bone 400g", precio:339 },
+      { id:"co5", nombre:"Cowboy 550g", precio:480 },
+      { id:"co6", nombre:"Tomahawk", precio:1100 },
+      { id:"co7", nombre:"Costillas BBQ 500g", precio:270 },
+      { id:"co8", nombre:"Vacío 400g", precio:339 }
+    ]
+  },
+
+  {
+    nombre:"Postres",
+    imagen:"postres.png",
+    icon:"/menu/categorias/postresIcon.png",
+    productos:[
+      { id:"po1", nombre:"Rebanada de pastel", precio:60 },
+      { id:"po2", nombre:"Plátanos con lechera", precio:55 },
+      { id:"po3", nombre:"Helado", precio:60 },
+      { id:"po4", nombre:"Cheesecake", precio:60 }
+    ]
+  },
+
+  {
+    nombre:"Bebidas",
+    imagen:"bebidas.png",
+    icon:"/menu/categorias/bebidasIcon.png",
+    productos:[
+      { id:"b1", nombre:"Jugo", precio:45 },
+      { id:"b2", nombre:"Licuado", precio:55 },
+      { id:"b3", nombre:"Limonada", precio:60 },
+      { id:"b4", nombre:"Naranjada", precio:60 },
+      { id:"b5", nombre:"Agua fresca", precio:29 },
+      { id:"b6", nombre:"Chocomilk", precio:45 },
+      { id:"b7", nombre:"Chocolate caliente", precio:40 },
+      { id:"b8", nombre:"Café de olla", precio:30 },
+      { id:"b9", nombre:"Americano", precio:30 },
+      { id:"b10", nombre:"Capuccino", precio:50 },
+      { id:"b11", nombre:"Frapuccino", precio:65 },
+      { id:"b12", nombre:"Cerveza", precio:40 }
+    ]
+  }
+
+];

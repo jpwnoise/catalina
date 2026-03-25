@@ -5,7 +5,15 @@ import { menu, Categoria } from "@/data/menu"
 import Image from "next/image"
 import { ArrowLeft, ArrowRight } from "lucide-react"
 import { Lora } from "next/font/google"
-import { motion } from "framer-motion"
+import { AnimatePresence, motion } from "framer-motion"
+import WhatsAppButton from "../components/whatsappbutton"
+import DeliveringButton from "../components/DeliveringButton"
+import Footer from "../components/Footer"
+import CartDrawer from "../components/Drawer"
+import { addToCart } from "@/lib/Cart"
+import { FiPlus } from "react-icons/fi"
+import BotonAgregar from "../components/BotonAgregar"
+
 
 const lora = Lora({
   subsets: ["latin"],
@@ -18,8 +26,9 @@ export default function Menu() {
   const [category, changeCategory] = useState<Categoria>(menu[0])
   const [categoryOffset, setCatOffset] = useState(0)
   const [itemsPerView, setItemsPerView] = useState(3)
+  const [cartOpen, setCartOpen] = useState(false)
 
-  // detectar tamaño de pantalla
+  // Detectar tamaño de pantalla
   useEffect(() => {
     const handleResize = () => {
       setItemsPerView(window.innerWidth < 768 ? 1 : 3)
@@ -32,43 +41,46 @@ export default function Menu() {
 
   const maxOffset = Math.max(menu.length - itemsPerView, 0)
 
-  // auto seleccionar en móvil
+  // Auto seleccionar en móvil
   useEffect(() => {
     if (itemsPerView === 1) {
       changeCategory(menu[categoryOffset])
     }
   }, [categoryOffset, itemsPerView])
 
-  // swipe handler
+  // Swipe handler
   const handleDragEnd = (_: any, info: any) => {
     const threshold = 50
-
     if (info.offset.x < -threshold) {
-      // swipe izquierda (avanza)
       setCatOffset(prev => Math.min(prev + itemsPerView, maxOffset))
     }
-
     if (info.offset.x > threshold) {
-      // swipe derecha (regresa)
       setCatOffset(prev => Math.max(prev - itemsPerView, 0))
     }
+  }
+
+  // Framer Motion variants
+  const container = {
+    hidden: {},
+    show: {
+      transition: { staggerChildren: 0.2 }
+    }
+  }
+
+  const item = {
+    hidden: { opacity: 0, y: 10 },
+    show: { opacity: 1, y: 0 }
   }
 
   return (
     <div>
 
       {/* HERO */}
-      <div className="w-full">
-        <div className="relative w-full h-[40vh] md:h-[60vh] lg:h-[70vh]">
-          <Image
-            src="/image_menu.png"
-            alt="Hero menu"
-            fill
-            className="object-cover"
-            priority
-          />
-        </div>
-      </div>
+      <section className={`${lora.className} flex flex-col items-center p-4 italic font-bold text-gray-600`}>
+        <h1 className="text-4xl m-4 tracking-wide">La catalina</h1>
+        <h2>Food & Drink</h2>
+        <h3>Menú</h3>
+      </section>
 
       {/* CARRUSEL */}
       <div className="flex flex-col items-center shadow-xl">
@@ -80,12 +92,10 @@ export default function Menu() {
             className={`p-2 border rounded-full transition
               ${categoryOffset === 0
                 ? "text-gray-300 border-gray-300 cursor-not-allowed"
-                : "hover:border-blue-500 hover:text-blue-500"
+                : "hover:border-gray-400 hover:text-gray-400"
               }
             `}
-            onClick={() => {
-              setCatOffset(prev => Math.max(prev - itemsPerView, 0))
-            }}
+            onClick={() => setCatOffset(prev => Math.max(prev - itemsPerView, 0))}
           >
             <ArrowLeft />
           </button>
@@ -99,7 +109,6 @@ export default function Menu() {
           >
             {menu.slice(categoryOffset, categoryOffset + itemsPerView).map((cat, index) => {
               const isActive = category.nombre === cat.nombre
-
               return (
                 <motion.button
                   key={index}
@@ -111,12 +120,10 @@ export default function Menu() {
                     transition duration-300 ease-in-out
                     rounded-full border-2
                     flex items-center justify-center
-                    
                     w-24 h-24 text-sm
                     md:w-32 md:h-32 md:text-lg
-                    
                     ${isActive
-                      ? "bg-blue-100 border-blue-500 text-blue-600 shadow-xl scale-105"
+                      ? "border-blue-600 text-blue-600 shadow-xl scale-105"
                       : "border-gray-400 text-gray-700 shadow-lg hover:-translate-y-2 md:hover:-translate-y-4 hover:shadow-2xl"
                     }
                   `}
@@ -138,45 +145,109 @@ export default function Menu() {
                 : "hover:border-blue-500 hover:text-blue-500"
               }
             `}
-            onClick={() => {
-              setCatOffset(prev => Math.min(prev + itemsPerView, maxOffset))
-            }}
+            onClick={() => setCatOffset(prev => Math.min(prev + itemsPerView, maxOffset))}
           >
             <ArrowRight />
           </button>
 
         </div>
+
+
       </div>
 
-      {/* PRODUCTOS */}
-      <div className="m-4 bg-gray-200 shadow-lg flex flex-col">
+      {/* PRODUCTOS - 3 columnas en escritorio, vertical en móvil */}
+      <div className="shadow flex flex-col">
 
-        <div className="grid grid-cols-1 md:grid-cols-2 w-full shadow-lg">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={category.nombre}
+            variants={container}
+            initial="hidden"
+            animate="show"
+            exit={{ opacity: 0 }}
+            className="grid grid-cols-1 gap-4 "
+          >
 
-          <div className={`${lora.className} italic bg-gray-400 w-full text-center p-2 font-bold text-2xl text-gray-900 flex items-center justify-center`}>
-            {category.nombre}
-          </div>
+            {/*Lista de productos */}
+            <AnimatePresence mode="wait">
+              <div className="relative">
 
-          <div className="p-4 h-64 overflow-y-auto shadow-[inset_0_4px_10px_rgba(0,0,0,0.2)]">
-            <ul className={`${lora.className} italic list-disc pl-4 space-y-1 font-bold text-gray-900 text-xl`}>
-              {category.productos.map((producto, index) => (
-                <li key={index}>{producto.nombre}</li>
-              ))}
-            </ul>
-          </div>
+                {category.icon && (
+                  <Image
+                    src={category.icon}
+                    alt="Icono de categoria"
+                    fill
+                    className="object-cover z-0 [mask-image:linear-gradient(to_right,transparent,rgba(0,0,0,.05))]"
 
-          <div className="flex justify-center items-center p-4">
-            <Image
-              src={'/menu/tostada_camaron.png'}
-              width={200}
-              height={200}
-              alt="imagen producto"
-            />
-          </div>
+                  />
+                )}
 
+                <motion.ul
+                  key={category.nombre}
+                  variants={container}
+                  initial="hidden"
+                  animate="show"
+                  exit={{ opacity: 0 }}
+                  className={`${lora.className} 
+    relative z-10 
+    grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 
+    gap-4 
+    p-4 
+    w-full max-w-5xl mx-auto`}
+                >
+                  {category.productos.map((producto, index) => (
+                    <motion.li
+                      key={index}
+                      variants={item}
+                      className="flex flex-col items-center justify-center gap-2 group bg-white/80 backdrop-blur-md border border-gray-200 rounded-2xl p-4 text-center shadow-md hover:shadow-xl hover:-translate-y-1 transition cursor-pointer"
+                    >
+                      <p className="font-semibold text-gray-800 text-sm md:text-base">
+                        {producto.nombre}
+                      </p>
+
+                      
+                      <div className="w-6 h-[2px] bg-blue-500 mx-auto mt-2 rounded-full opacity-50"></div>
+                      <BotonAgregar name={category.nombre + ' - ' + producto.nombre} price={producto.precio} quantity={1} />
+                    </motion.li>
+                  ))}
+
+                  <motion.div
+                    variants={item}
+                    className="col-span-full flex justify-center items-center my-6"
+                  >
+                    {category.icon && (
+                      <Image
+                        src={category.icon}
+                        alt="Icono decorativo"
+                        width={300}
+                        height={300}
+                        className="w-24 md:w-40 lg:w-56 object-contain opacity-70"
+                      />
+                    )}
+                  </motion.div>
+                </motion.ul>
+              </div>
+            </AnimatePresence>
+
+          </motion.div>
+        </AnimatePresence>
+
+      </div>
+
+      {/* BOTONES FLOTANTES FIX */}
+      <div className="fixed inset-0 z-[9999] pointer-events-none">
+
+        <div className="absolute bottom-5 right-5 pointer-events-auto">
+          <WhatsAppButton />
         </div>
-      </div>
 
+        <div className="absolute bottom-20 right-5 pointer-events-auto">
+          <DeliveringButton onClick={() => setCartOpen(true)} />
+        </div>
+
+      </div>
+      <Footer></Footer>
+      <CartDrawer isOpen={cartOpen} onClose={() => setCartOpen(false)}></CartDrawer>
     </div>
   )
 }
