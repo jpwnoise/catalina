@@ -17,6 +17,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Catalina Food and Drink",
   description: "Restaurante de mariscos frescos, ambiente elegante y experiencias memorables en Tlaquepaque.",
+  verification: {
+    google: "C_Ln4PPYN-u2j92XDxNoMiij8eavK-30mhCRmUegVxc",
+  },
   openGraph: {
     title: "Catalina Food and Drink",
     description: "Mariscos frescos, ambiente elegante y una experiencia que despierta todos tus sentidos.",
