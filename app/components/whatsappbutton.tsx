@@ -7,6 +7,7 @@ export default function WhatsAppButton() {
 
   return (
     <a
+    title="mandanos un mensaje"
       href={url}
       target="_blank"
       rel="noopener noreferrer"

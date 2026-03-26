@@ -6,7 +6,7 @@ import { FiPlus } from "react-icons/fi"
 
 export default function BotonAgregar(producto: CartItem) {
   return (
-    <motion.button
+    <motion.button title="agrega al carrito"
       onClick={() => addToCart(producto)}
 
       whileTap={{ scale: 0.8 }}          // 👈 animación click

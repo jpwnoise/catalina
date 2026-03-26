@@ -30,6 +30,7 @@ export default function CartButton({ onClick }: Props) {
 
   return (
     <motion.button
+    title="Mi carrito de compras"
       onClick={onClick}
       whileHover={{ scale: 1.15 }}
       whileTap={{ scale: 0.95 }}

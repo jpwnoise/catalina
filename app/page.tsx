@@ -24,7 +24,7 @@ export default function HomePage() {
       <CatalinaHeader />
 
       {/* Flyer sticky lateral desktop */}
-      <button
+      <button title="Volante Marzo 2026"
         onClick={() => setFlyerOpen(true)}
         className="hidden md:flex items-center justify-center fixed left-4 top-1/3 z-50 h-20 w-20 overflow-hidden rounded-xl border border-gray-200 bg-white p-1 shadow-lg transition hover:scale-105"
         aria-label="Abrir flyer"
