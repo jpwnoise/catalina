@@ -20,11 +20,11 @@ export const menu: Categoria[] = [
     imagen: "chilaquil.png",
     icon: "/menu/categorias/chilaquilIcon.png",
     productos: [
-      { id:"ch1", nombre:"Sencillos", precio:50 },
-      { id:"ch2", nombre:"Con fajitas de pollo", precio:100 },
-      { id:"ch3", nombre:"Con huevos al gusto", precio:90 },
-      { id:"ch4", nombre:"Con arrachera", precio:145 },
-      { id:"ch5", nombre:"Con peinecillo", precio:110 }
+      { id:"ch1", nombre:"Sencillos", precio:85 },
+      { id:"ch2", nombre:"Con fajitas de pollo", precio:130 },
+      { id:"ch3", nombre:"Con huevos al gusto", precio:100 },
+      { id:"ch4", nombre:"Con arrachera", precio:160 },
+      { id:"ch5", nombre:"Con peinecillo", precio:120 }
     ]
   },
 
@@ -33,12 +33,12 @@ export const menu: Categoria[] = [
     imagen:"guisados.png",
     icon:"/menu/categorias/guisadosIcon.png",
     productos:[
-      { id:"g1", nombre:"Chicharrón en salsa guajillo", precio:90 },
-      { id:"g2", nombre:"Chicharrón en salsa verde", precio:90 },
-      { id:"g3", nombre:"Costilla en salsa guajillo", precio:90 },
-      { id:"g4", nombre:"Costilla en chile morita", precio:90 },
-      { id:"g5", nombre:"Pastor", precio:90 },
-      { id:"g6", nombre:"Carne a la mexicana", precio:95 }
+      { id:"g1", nombre:"Chicharrón en salsa guajillo", precio:100 },
+      { id:"g2", nombre:"Chicharrón en salsa verde", precio:100 },
+      { id:"g3", nombre:"Costilla en salsa guajillo", precio:100 },
+      { id:"g4", nombre:"Costilla en chile morita", precio:100 },
+      { id:"g5", nombre:"Pastor", precio:100 },
+      { id:"g6", nombre:"Carne a la mexicana", precio:100 }
     ]
   },
 
@@ -47,9 +47,9 @@ export const menu: Categoria[] = [
     imagen:"huaraches.png",
     icon:"/menu/categorias/huarachesIcon.png",
     productos:[
-      { id:"h1", nombre:"Peinecillo", precio:150 },
-      { id:"h2", nombre:"Chorizo", precio:130 },
-      { id:"h3", nombre:"Chistorra", precio:170 }
+      { id:"h1", nombre:"Peinecillo", precio:165 },
+      { id:"h2", nombre:"Chorizo", precio:140 },
+      { id:"h3", nombre:"Chistorra", precio:180 }
     ]
   },
 
@@ -58,11 +58,11 @@ export const menu: Categoria[] = [
     imagen:"molletes.png",
     icon:"/menu/categorias/molletesIcon.png",
     productos:[
-      { id:"m1", nombre:"Sencillos", precio:80 },
+      { id:"m1", nombre:"Sencillos", precio:85 },
       { id:"m2", nombre:"Con arrachera", precio:180 },
-      { id:"m3", nombre:"Con peinecillo", precio:115 },
-      { id:"m4", nombre:"Con chorizo", precio:95 },
-      { id:"m5", nombre:"Dulces", precio:65 }
+      { id:"m3", nombre:"Con peinecillo", precio:120 },
+      { id:"m4", nombre:"Con chorizo", precio:105 },
+      { id:"m5", nombre:"Dulces", precio:75 }
     ]
   },
 
@@ -71,14 +71,16 @@ export const menu: Categoria[] = [
     imagen:"desayunos.png",
     icon:"/menu/categorias/desayunosIcon.png",
     productos:[
-      { id:"d1", nombre:"Huevos al gusto", precio:90 },
-      { id:"d2", nombre:"Omelette (2 ingredientes)", precio:110 },
+      { id:"d1", nombre:"Huevos al gusto", precio:100 },
+      { id:"d2", nombre:"Omelette (2 ingredientes)", precio:120 },
       { id:"d3", nombre:"Gorditas rellenas (3 piezas)", precio:100 },
-      { id:"d4", nombre:"Quesadilla sencilla", precio:60 },
-      { id:"d5", nombre:"Quesadilla con chorizo", precio:75 },
-      { id:"d6", nombre:"Quesadilla con peinecillo", precio:80 },
+
+      { id:"d4", nombre:"Quesadilla sencilla", precio:75 },
+      { id:"d5", nombre:"Quesadilla con chorizo", precio:85 },
+      { id:"d6", nombre:"Quesadilla con peinecillo", precio:95 },
       { id:"d7", nombre:"Quesadilla con arrachera", precio:120 },
-      { id:"d8", nombre:"Pelizcadas (3 piezas)", precio:139 }
+
+      { id:"d8", nombre:"Pellizcadas (3 piezas)", precio:139 }
     ]
   },
 
@@ -87,10 +89,59 @@ export const menu: Categoria[] = [
     imagen:"hotcakes.png",
     icon:"/menu/categorias/hotcakesIcon.png",
     productos:[
-      { id:"hw1", nombre:"Hotcakes (2 piezas)", precio:79 },
-      { id:"hw2", nombre:"Waffles (2 ingredientes)", precio:90 }
+      { id:"hw1", nombre:"Hotcakes (2 piezas)", precio:85 },
+      { id:"hw2", nombre:"Waffles (2 ingredientes)", precio:100 }
     ]
   },
+
+  // 🔽 NUEVAS CATEGORÍAS DE LA IMAGEN
+
+  {
+    nombre:"Extras Desayuno",
+    imagen:"extras.png",
+    icon:"/menu/categorias/desayunosIcon.png",
+    productos:[
+      { id:"ex1", nombre:"Enchiladas verdes (5 piezas)", precio:140 },
+      { id:"ex2", nombre:"Orden de pan dulce (2 piezas)", precio:45 },
+      { id:"ex3", nombre:"Molcajete 350g", precio:250 }
+    ]
+  },
+
+  {
+    nombre:"Asados al carbón",
+    imagen:"asados.png",
+    icon:"/menu/categorias/cortesIcon.png",
+    productos:[
+      { id:"ac1", nombre:"Peinecillo", precio:165 },
+      { id:"ac2", nombre:"Arrachera", precio:280 }
+    ]
+  },
+
+  {
+    nombre:"Machetes",
+    imagen:"machete.png",
+    icon:"/menu/categorias/entradasIcon.png",
+    productos:[
+      { id:"ma1", nombre:"Peinecillo", precio:260 },
+      { id:"ma2", nombre:"Chorizo", precio:250 },
+      { id:"ma3", nombre:"Arrachera", precio:295 },
+      { id:"ma4", nombre:"Combinada", precio:310 }
+    ]
+  },
+
+  {
+    nombre:"Frutas y Postres",
+    imagen:"postres.png",
+    icon:"/menu/categorias/postresIcon.png",
+    productos:[
+      { id:"fp1", nombre:"Plato de fruta", precio:100 },
+      { id:"fp2", nombre:"Plato de fruta con queso cottage", precio:120 },
+      { id:"fp3", nombre:"Hotcakes (2 piezas)", precio:85 },
+      { id:"fp4", nombre:"Waffles dulces", precio:100 }
+    ]
+  },
+
+  // 🔽 RESTO DEL MENÚ ORIGINAL (SIN CAMBIOS PORQUE NO SALE EN IMAGEN)
 
   {
     nombre:"Entradas",
@@ -212,18 +263,6 @@ export const menu: Categoria[] = [
       { id:"co6", nombre:"Tomahawk", precio:1100 },
       { id:"co7", nombre:"Costillas BBQ 500g", precio:270 },
       { id:"co8", nombre:"Vacío 400g", precio:339 }
-    ]
-  },
-
-  {
-    nombre:"Postres",
-    imagen:"postres.png",
-    icon:"/menu/categorias/postresIcon.png",
-    productos:[
-      { id:"po1", nombre:"Rebanada de pastel", precio:60 },
-      { id:"po2", nombre:"Plátanos con lechera", precio:55 },
-      { id:"po3", nombre:"Helado", precio:60 },
-      { id:"po4", nombre:"Cheesecake", precio:60 }
     ]
   },
 

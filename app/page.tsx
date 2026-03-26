@@ -97,7 +97,7 @@ export default function HomePage() {
               height={200}
               className="mx-auto mb-4 rounded-full object-cover"
             />
-            <h2>Food & Drink</h2>
+            <h2>Food and Drink</h2>
             <p className="text-lg mb-10 max-w-xl mx-auto">
               Mariscos frescos, ambiente elegante y una experiencia
               que despierta todos tus sentidos.

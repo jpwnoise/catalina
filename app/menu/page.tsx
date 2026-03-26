@@ -85,7 +85,7 @@ export default function Menu() {
           height={200}
           className="mx-auto mb-4 rounded-full object-cover"
         />
-        <h2>Food & Drink</h2>
+        <h2>Food and Drink</h2>
         <h3>Menú</h3>
       </section>
 
