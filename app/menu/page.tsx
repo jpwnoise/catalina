@@ -13,6 +13,7 @@ import CartDrawer from "../components/Drawer"
 import { addToCart } from "@/lib/Cart"
 import { FiPlus } from "react-icons/fi"
 import BotonAgregar from "../components/BotonAgregar"
+import CatalinaHeader from "../components/Header"
 
 
 const lora = Lora({
@@ -74,10 +75,16 @@ export default function Menu() {
 
   return (
     <div>
-
+      <CatalinaHeader/>
       {/* HERO */}
       <section className={`${lora.className} flex flex-col items-center p-4 italic font-bold text-gray-600`}>
-        <h1 className="text-4xl m-4 tracking-wide">La catalina</h1>
+        <Image
+          src="/logo_rosa.png"
+          alt="La catalina"
+          width={200}
+          height={200}
+          className="mx-auto mb-4 rounded-full object-cover"
+        />
         <h2>Food & Drink</h2>
         <h3>Menú</h3>
       </section>
@@ -92,7 +99,7 @@ export default function Menu() {
             className={`p-2 border rounded-full transition
               ${categoryOffset === 0
                 ? "text-gray-300 border-gray-300 cursor-not-allowed"
-                : "hover:border-gray-400 hover:text-gray-400"
+                : "hover:border-[rgb(236,46,93)] text-[rgb(236,46,93)] hover:scale-120 hover:border-2"
               }
             `}
             onClick={() => setCatOffset(prev => Math.max(prev - itemsPerView, 0))}
@@ -123,7 +130,7 @@ export default function Menu() {
                     w-24 h-24 text-sm
                     md:w-32 md:h-32 md:text-lg
                     ${isActive
-                      ? "border-blue-600 text-blue-600 shadow-xl scale-105"
+                      ? "border-[rgb(236,46,93)] text-[rgb(236,46,93)] shadow-xl scale-105 bg-[rgb(234, 200, 209)]"
                       : "border-gray-400 text-gray-700 shadow-lg hover:-translate-y-2 md:hover:-translate-y-4 hover:shadow-2xl"
                     }
                   `}
@@ -142,7 +149,7 @@ export default function Menu() {
             className={`p-2 border rounded-full transition
               ${categoryOffset >= maxOffset
                 ? "text-gray-300 border-gray-300 cursor-not-allowed"
-                : "hover:border-blue-500 hover:text-blue-500"
+                : "hover:border-[rgb(236,46,93)] text-[rgb(236,46,93)] hover:scale-120 hover:border-2"
               }
             `}
             onClick={() => setCatOffset(prev => Math.min(prev + itemsPerView, maxOffset))}
@@ -199,7 +206,7 @@ export default function Menu() {
                     <motion.li
                       key={index}
                       variants={item}
-                      className="flex flex-col items-center justify-center gap-2 group bg-white/80 backdrop-blur-md border border-gray-200 rounded-2xl p-4 text-center shadow-md hover:shadow-xl hover:-translate-y-1 transition cursor-pointer"
+                      className="flex flex-col items-center justify-center gap-2 group bg-white/80 hover:border-[rgb(238,105,138)] backdrop-blur-md border border-gray-200 rounded-2xl p-4 text-center shadow-md hover:shadow-xl hover:-translate-y-1 transition cursor-pointer"
                     >
                       <p className="font-semibold text-gray-800 text-sm md:text-base">
                         {producto.nombre}

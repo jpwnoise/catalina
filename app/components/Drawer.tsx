@@ -5,12 +5,20 @@ import { motion, AnimatePresence } from "framer-motion"
 import { X } from "lucide-react"
 import { getCart, addToCart, clearCart } from "@/lib/Cart"
 import { sendToWhatsApp } from "@/lib/buildWhatsppMessage";
+import { Lora } from "next/font/google";
 
 interface CartItem {
   name: string
   price: number
   quantity: number
 }
+
+
+const lora = Lora({
+  subsets: ["latin"],
+  style: ["italic", "normal"],
+  weight: ["400", "500", "600", "700"]
+});
 
 export default function CartDrawer({
   isOpen,
@@ -61,7 +69,7 @@ export default function CartDrawer({
   )
 
   return (
-    <AnimatePresence>
+    <AnimatePresence  >
       {isOpen && (
         <>
           {/* OVERLAY */}
@@ -118,7 +126,7 @@ export default function CartDrawer({
 
                     <button
                       onClick={() => addOne(item)}
-                      className="px-2 bg-gray-800 text-white rounded"
+                      className="px-2 bg-[rgb(236,46,93)] text-white rounded"
                     >
                       +
                     </button>
@@ -140,7 +148,7 @@ export default function CartDrawer({
                 Vaciar
               </button>
 
-              <button className="mt-2 w-full bg-gray-800 text-white py-2 rounded" 
+              <button className= {`${lora.className} mt-2 w-full bg-[rgb(236,46,93)] text-gray-100 py-2 rounded font-bold`} 
               onClick={()=>{
                 console.log('enviando pedido')
                 sendToWhatsApp()}}>

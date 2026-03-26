@@ -13,7 +13,7 @@ export default function BotonAgregar(producto: CartItem) {
       whileHover={{ scale: 1.1 }}        // 👈 hover suave (desktop)
 
       className="
-        bg-gray-700 text-white
+        bg-[rgb(236,46,93)] text-white
         w-9 h-9 rounded-full flex items-center justify-center shadow-lg
         transition-all duration-200
         
