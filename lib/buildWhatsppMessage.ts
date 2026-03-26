@@ -21,7 +21,7 @@ export function sendToWhatsApp(){
 
   if (!message) return
 
-  const phone = "523313262108" 
+  const phone = "+5213343637881" 
 
   const url = `https://wa.me/${phone}?text=${message}`
 
