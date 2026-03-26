@@ -8,6 +8,7 @@ import { Lora } from "next/font/google";
 import CatalinaHeader from "./components/Header";
 import Footer from "./components/Footer";
 import Buzon from "./components/Buzon";
+import VideosSection from "./components/VideosSecton";
 
 const lora = Lora({
   subsets: ["latin"],
@@ -122,6 +123,8 @@ export default function HomePage() {
           </p>
         </section>
 
+        <VideosSection />
+
         {/* DESTACADOS */}
         <section className={`${lora.className} py-20 px-6 bg-[rgb(234, 200, 209)] text-gray-600 italic font-bold`}>
           <h2 className="text-4xl text-center mb-12">Especialidades</h2>
@@ -168,6 +171,7 @@ export default function HomePage() {
             alt="Mesero"
             fill
             className="object-cover absolute inset-0"
+            style={{ objectPosition: '20% 20%' }}
           />
           <div className="absolute inset-0 bg-gradient-to-l from-white via-white/80 to-transparent"></div>
           <div className="relative z-10 max-w-6xl mx-auto">
