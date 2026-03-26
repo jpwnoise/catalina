@@ -16,7 +16,28 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Catalina Food and Drink",
-  description: "Restaurante",
+  description: "Restaurante de mariscos frescos, ambiente elegante y experiencias memorables en Tlaquepaque.",
+  openGraph: {
+    title: "Catalina Food and Drink",
+    description: "Mariscos frescos, ambiente elegante y una experiencia que despierta todos tus sentidos.",
+    url: "https://catalina-teal.vercel.app/",
+    siteName: "La Catalina",
+    images: [
+      {
+        url: "https://catalina-teal.vercel.app/og_image.png",
+        width: 1200,
+        height: 630,
+        alt: "La Catalina Food and Drink",
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Catalina Food and Drink",
+    description: "Mariscos frescos, ambiente elegante y una experiencia que despierta todos tus sentidos.",
+    images: ["https://catalina-teal.vercel.app/og_image.png"],
+  },
 };
 
 export default function RootLayout({
